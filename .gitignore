@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.netlify/
+tools/*.exe
+public/tunnel-status.json
+samples-output/
+.DS_Store
+Thumbs.db

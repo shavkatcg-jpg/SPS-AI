@@ -1,0 +1,18 @@
+{
+  "name": "sps-project-arch-2",
+  "version": "2.8.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0 --port 5185",
+    "build": "vite build",
+    "preview": "vite preview --host 0.0.0.0 --port 5185",
+    "test": "node --test tests/planar-arch-engine.test.mjs tests/field-survey-e2e.test.mjs tests/full-mep-smeta-gost.test.mjs tests/audit-12-points.test.mjs"
+  },
+  "dependencies": {
+    "three": "^0.180.0"
+  },
+  "devDependencies": {
+    "vite": "^5.4.21"
+  }
+}

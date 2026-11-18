@@ -1,0 +1,1073 @@
+/* SPS Project — Yagona SpsUiKit Dizayn Tizimi (v2.0.0) */
+:root {
+  --bg-app: #090e17;
+  --bg-panel: #111827;
+  --bg-card: #172033;
+  --bg-subtle: #1e293b;
+  --border: #283548;
+  --border-strong: #3b4d66;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --brand-blue: #0788F5;
+  --brand-red: #FF3445;
+  --emerald: #10b981;
+  --radius-card: 10px;
+  --radius-ctrl: 8px;
+}
+
+body.theme-light {
+  --bg-app: #eef2f6;
+  --bg-panel: #ffffff;
+  --bg-card: #f8fafc;
+  --bg-subtle: #f1f5f9;
+  --border: #dbe3ed;
+  --border-strong: #cbd5e1;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body, #app {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--bg-app);
+  color: var(--text-primary);
+  user-select: none;
+}
+
+/* Ingichka zamonaviy skrollbar (SpsUiKit) */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 999px;
+}
+
+.sps-shell {
+  display: grid;
+  grid-template-rows: 58px 42px 1fr 56px;
+  width: 100%;
+  height: 100%;
+}
+
+/* 42px Muhandislik Bosqichlari va Simulyatsiya Lentasi (Mobil va Kompyuterda doim ko'rinadi!) */
+.sps-stage-ribbon {
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 0 12px;
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border);
+  overflow-x: auto;
+  z-index: 18;
+}
+
+.sps-stage-steps, .sps-layer-toggles {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.sps-step-pill {
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0 8px;
+  border-radius: 7px;
+  border: 1px solid var(--border);
+  background: var(--bg-subtle);
+  color: var(--text-secondary);
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.14s ease;
+}
+
+.sps-step-pill:hover {
+  color: var(--text-primary);
+  border-color: var(--brand-blue);
+}
+
+.sps-step-pill.active {
+  background: var(--brand-blue);
+  border-color: var(--brand-blue);
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(7, 136, 245, 0.35);
+}
+
+.sps-layer-chip {
+  height: 27px;
+  padding: 0 8px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.sps-layer-chip.on {
+  background: rgba(16, 185, 129, 0.16);
+  border-color: rgba(16, 185, 129, 0.55);
+  color: var(--emerald);
+}
+
+.sps-sim-btn {
+  height: 28px;
+  padding: 0 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(245, 158, 11, 0.55);
+  background: rgba(245, 158, 11, 0.14);
+  color: #fbbf24;
+  font-size: 11.5px;
+  font-weight: 800;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.sps-sim-btn.active {
+  background: linear-gradient(135deg, #f59e0b, #ea580c);
+  color: #ffffff;
+  border-color: #f59e0b;
+}
+
+/* Smeta, TM Sxema va GOST A3 Oformleniya to'liq sahna oynasi */
+.sps-doc-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 12;
+  background: var(--bg-app);
+  overflow-y: auto;
+  padding: 14px 18px;
+  display: none;
+}
+
+.sps-doc-overlay.open {
+  display: block;
+}
+
+.sps-data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.sps-data-table th, .sps-data-table td {
+  border-bottom: 1px solid var(--border);
+  padding: 7px 8px;
+  text-align: left;
+}
+
+.sps-data-table th {
+  background: var(--bg-subtle);
+  color: var(--text-secondary);
+  font-size: 11px;
+  text-transform: uppercase;
+  position: sticky;
+  top: 0;
+}
+
+/* GOST A3 Vektorli List Ekranda Preview Stili */
+.gost-preview-sheet-host .gost-a3-page {
+  width: min(1080px, 100%);
+  aspect-ratio: 420 / 297;
+  background: #ffffff;
+  color: #0f172a;
+  margin: 10px auto;
+  position: relative;
+  border-radius: 4px;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.45);
+  overflow: hidden;
+  user-select: text;
+}
+
+.gost-preview-sheet-host .gost-a3-inner-frame {
+  position: absolute;
+  left: 4.76%; top: 1.7%; right: 1.2%; bottom: 1.7%;
+  border: 2px solid #0f172a;
+  display: flex;
+  flex-direction: column;
+}
+
+.gost-preview-sheet-host .gost-archive-left {
+  position: absolute;
+  left: -3.4%; bottom: 12%;
+  transform: rotate(-90deg);
+  transform-origin: left bottom;
+  font-size: 9px;
+  color: #334155;
+}
+
+.gost-preview-sheet-host .gost-canvas-area {
+  flex: 1;
+  overflow: hidden;
+  padding-bottom: 145px;
+}
+
+.gost-preview-sheet-host .gost-stamp-f3 {
+  position: absolute;
+  right: 0; bottom: 0;
+  width: 44%;
+  height: 142px;
+  border-collapse: collapse;
+  background: #ffffff;
+  font-size: 10px;
+  color: #0f172a;
+}
+
+.gost-preview-sheet-host .gost-stamp-f3 td {
+  border: 1px solid #0f172a;
+  padding: 1px 3px;
+  text-align: center;
+}
+
+.gost-preview-sheet-host .gost-tbl {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 10px;
+  color: #0f172a;
+}
+
+.gost-preview-sheet-host .gost-tbl th,
+.gost-preview-sheet-host .gost-tbl td {
+  border: 1px solid #334155;
+  padding: 3px 5px;
+}
+
+.gost-preview-sheet-host .gost-tbl th {
+  background: #f1f5f9;
+}
+
+/* 58px Tepa Brend-Shapka (SpsUiKit qat'iy qoidasi) */
+.sps-header {
+  height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 0 14px;
+  background: var(--bg-panel);
+  border-bottom: 1px solid var(--border);
+  z-index: 20;
+}
+
+.sps-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.sps-brand img {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  object-fit: cover;
+  border: 1px solid var(--border);
+}
+
+.sps-brand-title {
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+.sps-brand-dot {
+  color: var(--brand-blue);
+}
+
+.sps-ver-badge {
+  font-size: 11px;
+  font-weight: 700;
+  font-family: 'JetBrains Mono', monospace;
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: rgba(7, 136, 245, 0.14);
+  color: var(--brand-blue);
+  border: 1px solid rgba(7, 136, 245, 0.35);
+}
+
+.sps-header-center {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  flex: 1;
+  min-width: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.sps-header-center::-webkit-scrollbar {
+  display: none;
+}
+
+.sps-header-right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+/* Yagona SpsUiKit Chip / Button / Input komponentlari */
+.sps-chip-group {
+  display: inline-flex;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-ctrl);
+  padding: 2px;
+  gap: 2px;
+}
+
+.sps-chip {
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.14s ease;
+}
+
+.sps-chip:hover {
+  color: var(--text-primary);
+}
+
+.sps-chip.active {
+  background: var(--brand-blue);
+  color: #ffffff;
+  box-shadow: 0 1px 4px rgba(7, 136, 245, 0.35);
+}
+
+.sps-btn {
+  height: 34px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 12px;
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: var(--radius-ctrl);
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  color: var(--text-primary);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.14s ease;
+}
+
+.sps-btn:hover {
+  border-color: var(--brand-blue);
+}
+
+.sps-btn:disabled {
+  opacity: 0.42;
+  cursor: not-allowed;
+}
+
+.sps-btn-primary {
+  background: linear-gradient(135deg, #0788F5, #0369a1);
+  color: #ffffff;
+  border-color: #0788F5;
+}
+
+.sps-btn-accent {
+  background: linear-gradient(135deg, #FF3445, #be123c);
+  color: #ffffff;
+  border-color: #FF3445;
+}
+
+.sps-kpi-pill {
+  font-size: 12px;
+  font-weight: 700;
+  font-family: 'JetBrains Mono', monospace;
+  padding: 5px 10px;
+  border-radius: var(--radius-ctrl);
+  background: rgba(16, 185, 129, 0.12);
+  color: var(--emerald);
+  border: 1px solid rgba(16, 185, 129, 0.32);
+  white-space: nowrap;
+}
+
+/* Markaziy Ish Maydoni (Yig'iladigan panellar bilan!) */
+.sps-workspace {
+  display: grid;
+  grid-template-columns: 274px 1fr 280px;
+  min-height: 0;
+  min-width: 0;
+  position: relative;
+}
+
+.sps-workspace.left-collapsed {
+  grid-template-columns: 0px 1fr 280px;
+}
+.sps-workspace.right-collapsed {
+  grid-template-columns: 274px 1fr 0px;
+}
+.sps-workspace.left-collapsed.right-collapsed {
+  grid-template-columns: 1fr;
+}
+.sps-workspace.left-collapsed #left-stage-panel,
+.sps-workspace.right-collapsed .sps-side-right {
+  display: none;
+}
+
+.sps-side-panel {
+  background: var(--bg-panel);
+  border-right: 1px solid var(--border);
+  padding: 10px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sps-side-right {
+  border-right: none;
+  border-left: 1px solid var(--border);
+}
+
+.sps-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  padding: 10px 11px;
+  min-width: 0;
+}
+
+.sps-sec-head {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 9px;
+  font-size: 11.5px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--text-primary);
+}
+
+.sps-sec-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 19px;
+  border-radius: 5px;
+  background: rgba(7, 136, 245, 0.16);
+  color: var(--brand-blue);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10.5px;
+  font-weight: 800;
+}
+
+.sps-tool-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+}
+
+.sps-tool-btn {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 9px;
+  border-radius: var(--radius-ctrl);
+  border: 1px solid var(--border);
+  background: var(--bg-subtle);
+  color: var(--text-primary);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.14s ease;
+}
+
+.sps-tool-btn:hover {
+  border-color: var(--brand-blue);
+}
+
+.sps-tool-btn.active {
+  background: rgba(7, 136, 245, 0.18);
+  border-color: var(--brand-blue);
+  color: var(--brand-blue);
+  font-weight: 800;
+}
+
+.sps-tool-btn.wide {
+  grid-column: 1 / -1;
+}
+
+.sps-field {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.sps-field:last-child {
+  margin-bottom: 0;
+}
+
+.sps-field label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+.sps-input, .sps-select, .sps-textarea {
+  width: 100%;
+  padding: 7px 9px;
+  border-radius: var(--radius-ctrl);
+  border: 1px solid var(--border-strong);
+  background: var(--bg-subtle);
+  color: var(--text-primary);
+  font-size: 12.5px;
+  font-family: inherit;
+  outline: none;
+}
+
+.sps-input:focus, .sps-select:focus, .sps-textarea:focus {
+  border-color: var(--brand-blue);
+}
+
+.sps-room-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  max-height: 240px;
+  overflow-y: auto;
+}
+
+.sps-room-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 8px;
+  border-radius: 7px;
+  background: var(--bg-subtle);
+  border: 1px solid transparent;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.sps-room-row:hover, .sps-room-row.active {
+  border-color: var(--brand-blue);
+}
+
+.sps-room-area {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 800;
+  color: var(--brand-blue);
+}
+
+/* 2D / 3D Viewport Split */
+.sps-stage {
+  display: grid;
+  min-width: 0;
+  min-height: 0;
+  position: relative;
+}
+
+.sps-stage.mode-2d {
+  grid-template-columns: 1fr;
+}
+.sps-stage.mode-3d {
+  grid-template-columns: 1fr;
+}
+.sps-stage.mode-split {
+  grid-template-columns: 1.08fr 0.92fr;
+}
+
+.sps-pane {
+  position: relative;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.sps-pane-3d {
+  border-left: 1px solid var(--border);
+}
+
+.sps-pane-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 6;
+  padding: 4px 9px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  background: rgba(15, 23, 42, 0.78);
+  color: #f8fafc;
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  pointer-events: none;
+}
+
+.cad-inline-dim-box {
+  position: absolute;
+  z-index: 15;
+  gap: 4px;
+  padding: 4px;
+  border-radius: 8px;
+  background: #0f172a;
+  border: 2px solid var(--brand-blue);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+}
+
+.cad-inline-dim-box input {
+  width: 82px;
+  padding: 4px 7px;
+  border-radius: 5px;
+  border: 1px solid #334155;
+  background: #1e293b;
+  color: #ffffff;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.cad-inline-dim-box button {
+  padding: 4px 10px;
+  border-radius: 5px;
+  border: none;
+  background: var(--brand-blue);
+  color: #fff;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+/* 56px Pastki Holat va Tugmalar Paneli (SpsUiKit qat'iy qoidasi) */
+.sps-footer {
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 0 14px;
+  background: var(--bg-panel);
+  border-top: 1px solid var(--border);
+  z-index: 20;
+}
+
+.sps-footer-left {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  flex: 1;
+  min-width: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.sps-footer-left::-webkit-scrollbar {
+  display: none;
+}
+
+.sps-footer-right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.sps-status-hint {
+  font-size: 12px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.sps-coords-pill {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11.5px;
+  font-weight: 700;
+  padding: 4px 8px;
+  border-radius: 6px;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+/* Modal Oynalar */
+.sps-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(2, 6, 23, 0.72);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px;
+}
+
+.sps-modal-card {
+  width: min(760px, 96vw);
+  max-height: 90vh;
+  overflow-y: auto;
+  background: var(--bg-panel);
+  border: 1px solid var(--border-strong);
+  border-radius: 14px;
+  padding: 18px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+}
+
+.sps-proto-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.sps-proto-card {
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border-strong);
+  background: var(--bg-card);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.sps-proto-card:hover {
+  border-color: var(--brand-blue);
+  transform: translateY(-1px);
+}
+
+/* Mobil Pastki Navigatsiya Paneli (odatiy kompyuterda yashirin, telefonda avtomatik chiqadi!) */
+.sps-mobile-nav {
+  display: none;
+  height: 56px;
+  background: var(--bg-panel);
+  border-top: 1px solid var(--border);
+  grid-template-columns: repeat(6, 1fr);
+  align-items: stretch;
+  z-index: 45;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+.sps-mob-tab {
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  font-size: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 4px 2px;
+}
+
+.sps-mob-tab .mob-ico {
+  font-size: 15px;
+  line-height: 1.1;
+}
+
+.sps-mob-tab.active {
+  color: var(--brand-blue);
+  background: rgba(7, 136, 245, 0.12);
+  border-top: 2px solid var(--brand-blue);
+}
+
+/* Telefon / Planshet Moslashuvchan Prezentatsiya Rejimi */
+@media (max-width: 1024px) {
+  .sps-header {
+    overflow-x: auto;
+    padding: 0 8px;
+    gap: 6px;
+  }
+  .sps-header-center, .sps-header-right {
+    flex-shrink: 0;
+  }
+  .sps-workspace {
+    grid-template-columns: 1fr;
+    position: relative;
+  }
+  .sps-side-panel {
+    display: none;
+  }
+  #left-stage-panel.mob-drawer-open {
+    display: flex !important;
+    position: absolute;
+    left: 8px;
+    right: 8px;
+    bottom: 8px;
+    max-height: 64vh;
+    z-index: 40;
+    background: var(--bg-panel);
+    border: 1px solid var(--brand-blue);
+    border-radius: 14px;
+    padding: 10px;
+    box-shadow: 0 -12px 36px rgba(0, 0, 0, 0.58);
+    overflow-y: auto;
+  }
+  .sps-stage.mode-split {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+  .sps-pane-3d {
+    border-left: none;
+    border-top: 1px solid var(--border);
+  }
+  .sps-brand-title span.hide-sm, .sps-status-hint {
+    display: none;
+  }
+  .sps-proto-grid {
+    grid-template-columns: 1fr;
+  }
+  .sps-footer {
+    display: none;
+  }
+  .sps-mobile-nav {
+    display: grid;
+  }
+}
+
+/* Kompyuter ichida "📱 Telefon Rejimini Sinash" yoqilganda (390×844 smartfon ramkasi!) */
+body.force-mobile-demo {
+  background: #020617;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+body.force-mobile-demo #app {
+  width: 400px;
+  height: min(850px, 95vh);
+  border-radius: 28px;
+  border: 6px solid #334155;
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.75);
+  overflow: hidden;
+}
+body.force-mobile-demo .sps-workspace {
+  grid-template-columns: 1fr;
+  position: relative;
+}
+body.force-mobile-demo .sps-side-panel {
+  display: none;
+}
+body.force-mobile-demo #left-stage-panel.mob-drawer-open {
+  display: flex !important;
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  bottom: 8px;
+  max-height: 60vh;
+  z-index: 40;
+  background: var(--bg-panel);
+  border: 1px solid var(--brand-blue);
+  border-radius: 14px;
+  padding: 10px;
+  box-shadow: 0 -12px 36px rgba(0, 0, 0, 0.58);
+  overflow-y: auto;
+}
+body.force-mobile-demo .sps-footer {
+  display: none;
+}
+body.force-mobile-demo .sps-mobile-nav {
+  display: grid;
+}
+body.force-mobile-demo .sps-header {
+  overflow-x: auto;
+  padding: 0 8px;
+}
+body.force-mobile-demo .sps-brand-title span.hide-sm {
+  display: none;
+}
+
+/* 1280px – 1580px (shu jumladan 1366px va 1440px noutbuk/monitor ekranlari!) moslashuvchan rejimi */
+@media (max-width: 1580px) and (min-width: 1025px) {
+  .sps-header {
+    padding: 0 10px;
+    gap: 6px;
+  }
+  .sps-brand {
+    gap: 6px;
+    flex-shrink: 0;
+  }
+  .sps-brand-title {
+    font-size: 13px;
+  }
+  .sps-brand-title .hide-md,
+  .sps-btn .hide-md,
+  .sps-chip .hide-md,
+  .sps-step-pill .hide-md,
+  .sps-layer-chip .hide-md,
+  .sps-status-hint {
+    display: none;
+  }
+  .sps-header .sps-btn {
+    height: 31px;
+    padding: 0 8px;
+    font-size: 11.2px;
+    gap: 4px;
+  }
+  .sps-header .sps-chip {
+    padding: 4px 7px;
+    font-size: 11px;
+  }
+  .sps-kpi-pill {
+    padding: 4px 8px;
+    font-size: 11px;
+  }
+  .sps-stage-ribbon {
+    padding: 0 8px;
+    gap: 6px;
+  }
+  .sps-step-pill {
+    padding: 0 7px;
+    font-size: 10.6px;
+  }
+  .sps-workspace {
+    grid-template-columns: 248px 1fr 242px;
+  }
+  .sps-workspace.left-collapsed {
+    grid-template-columns: 0px 1fr 242px;
+  }
+  .sps-workspace.right-collapsed {
+    grid-template-columns: 248px 1fr 0px;
+  }
+  .sps-workspace.left-collapsed.right-collapsed {
+    grid-template-columns: 1fr;
+  }
+  .sps-footer {
+    padding: 0 10px;
+    gap: 6px;
+  }
+  .sps-footer .sps-btn {
+    height: 31px;
+    padding: 0 8px;
+    font-size: 11.2px;
+    gap: 4px;
+  }
+  .sps-footer .sps-chip {
+    padding: 4px 7px;
+    font-size: 11px;
+  }
+}
+
+/* Smeta: Gorizontal suriladigan jadval + 390px Mobil Kartochka ko'rinishi */
+.sps-smeta-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.sps-smeta-mobile-cards {
+  display: none;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sps-smeta-mob-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 11px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.sps-smeta-mob-card.labor {
+  border-color: rgba(245, 158, 11, 0.42);
+  background: rgba(245, 158, 11, 0.07);
+}
+
+.sps-smeta-mob-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.1fr;
+  gap: 6px;
+  align-items: center;
+  padding-top: 6px;
+  border-top: 1px dashed var(--border);
+}
+
+.sps-smeta-view-cards .sps-smeta-mobile-cards {
+  display: flex;
+}
+.sps-smeta-view-cards .sps-smeta-table-card {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .sps-smeta-auto-responsive .sps-smeta-mobile-cards {
+    display: flex;
+  }
+  .sps-smeta-auto-responsive .sps-smeta-table-card {
+    display: none;
+  }
+  .sps-doc-overlay {
+    padding: 10px;
+  }
+}
+
+body.force-mobile-demo .sps-smeta-auto-responsive .sps-smeta-mobile-cards {
+  display: flex;
+}
+body.force-mobile-demo .sps-smeta-auto-responsive .sps-smeta-table-card {
+  display: none;
+}
+body.force-mobile-demo .sps-doc-overlay {
+  padding: 10px;
+}
+
+/* Eksport (IFC / DXF / CSV / JSON) Jonli Tasdiq Xabarnomasi */
+.sps-export-toast {
+  position: fixed;
+  right: 16px;
+  bottom: 68px;
+  z-index: 1300;
+  width: min(440px, calc(100vw - 32px));
+  padding: 11px 13px;
+  border-radius: 11px;
+  background: var(--bg-panel);
+  border: 1.5px solid rgba(16, 185, 129, 0.65);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.55);
+}
+
+.sps-export-toast.err {
+  border-color: #FF3445;
+}
+
+.sps-select {
+  text-overflow: ellipsis;
+}
+
+.sps-mob-only-exports {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  .sps-mob-only-exports {
+    display: block;
+  }
+}
+
+body.force-mobile-demo .sps-mob-only-exports {
+  display: block;
+}
